@@ -44,7 +44,7 @@ public class login extends javax.swing.JFrame {
                 TelaPrincipal principal = new TelaPrincipal();
                principal.setVisible(true);
             } else{
-                JOptionPane.showMessageDialog(null, "usuario e/ou senha incorretos");
+                JOptionPane.showMessageDialog(null, "usuario e/ou senha invalidos");
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "tela login"+e);
@@ -67,6 +67,7 @@ public class login extends javax.swing.JFrame {
         txtSen = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nome de usuario");
 
@@ -114,6 +115,7 @@ public class login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed

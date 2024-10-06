@@ -5,6 +5,8 @@
  */
 package br.com.bios;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leon
@@ -28,32 +30,99 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        btnCadUsu = new javax.swing.JMenuItem();
+        btnCadClie = new javax.swing.JMenuItem();
+        btnAgnd = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        btnOut = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 27)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("principal");
+        jLabel1.setText("Sistema de cadastro de clientes");
+
+        jMenu1.setText("cadastro");
+
+        btnCadUsu.setText("cadastro de usuarios");
+        btnCadUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadUsuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnCadUsu);
+
+        btnCadClie.setText("cadastro de clientes");
+        btnCadClie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadClieActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnCadClie);
+
+        jMenuBar1.add(jMenu1);
+
+        btnAgnd.setText("agenda");
+        jMenuBar1.add(btnAgnd);
+
+        jMenu2.setText("opções");
+
+        btnOut.setText("sair");
+        btnOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOutActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnOut);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(195, 195, 195)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadUsuActionPerformed
+        CadUsu cadU = new CadUsu();
+        cadU.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCadUsuActionPerformed
+
+    private void btnCadClieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadClieActionPerformed
+        CadCli cadC= new CadCli();
+        cadC.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCadClieActionPerformed
+
+    private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
+       int res= JOptionPane.showConfirmDialog(null, "tem certeza que quer sair?", null, JOptionPane.YES_NO_OPTION);
+       
+       if(res == JOptionPane.YES_OPTION){
+           this.dispose();
+       }
+    }//GEN-LAST:event_btnOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +160,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu btnAgnd;
+    private javax.swing.JMenuItem btnCadClie;
+    private javax.swing.JMenuItem btnCadUsu;
+    private javax.swing.JMenuItem btnOut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
