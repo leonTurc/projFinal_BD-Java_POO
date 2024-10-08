@@ -52,7 +52,7 @@ public class CadUsu extends javax.swing.JFrame {
             int add = pst.executeUpdate();
 
             if (add > 0) {
-                JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+                JOptionPane.showMessageDialog(null, "Criado com sucesso");
                 txtNome.setText(null);
                 txtMail.setText(null);
                 txtNomeUsu.setText(null);
@@ -68,6 +68,71 @@ public class CadUsu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "metodo criar " + e);
             }
 
+        }
+    }
+    
+    public void deletar(){
+        int res= JOptionPane.showConfirmDialog(null, "Tem certeza que quer deletar este usuario?", "ATENÇÃO", JOptionPane.YES_NO_OPTION);
+        if(res == JOptionPane.YES_OPTION){
+            String sql= "delete from tb_usuarios where id = ? ";
+            try{
+                pst= conexao.prepareStatement(sql);
+                pst.setString(1, txtId.getText());
+                int result = pst.executeUpdate();
+                if(result > 0){
+                    JOptionPane.showMessageDialog(null, "Usuario deletado com sucesso");
+                    txtId.setText(null);
+                    txtNome.setText(null);
+                    txtMail.setText(null);
+                    txtNomeUsu.setText(null);
+                    txtPass.setText(null);
+                } else{
+                    JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
+                }
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "metodo deletar:"+e.getMessage());
+            }
+        }
+    }
+    
+    public void atualizar(){
+        int res= JOptionPane.showConfirmDialog(null, "Quer mesmo alterar este usuario?", "ATENÇÃO", JOptionPane.YES_NO_OPTION);
+        if(res == JOptionPane.YES_OPTION){
+            String sql= "update tb_usuarios set nome = ?, email= ?, nome_usuario= ?, senha= ? where id= ?";
+            
+            try{
+                pst= conexao.prepareStatement(sql);
+                pst.setString(1, txtNome.getText());
+                pst.setString(2, txtMail.getText());
+                pst.setString(3, txtNomeUsu.getText());
+                pst.setString(4, txtPass.getText());
+                pst.setString(5, txtId.getText());
+                
+                if (txtNome.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha a area de nome.");
+            } else if (txtMail.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha a area de Email");
+            } else if (txtNomeUsu.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
+            } else if (txtPass.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha a area de senha");
+            } else{
+                int result= pst.executeUpdate();
+                
+                if(result > 0){
+                    JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+                    txtId.setText(null);
+                    txtNome.setText(null);
+                    txtMail.setText(null);
+                    txtNomeUsu.setText(null);
+                    txtPass.setText(null);
+                } else {
+                    JOptionPane.showMessageDialog(null, "erro ao alterar");
+                    }
+                }
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "metodo Atualizar "+e.getMessage());
+            }
         }
     }
 
@@ -154,8 +219,18 @@ public class CadUsu extends javax.swing.JFrame {
         });
 
         btnUpd.setText("atualizar");
+        btnUpd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdActionPerformed(evt);
+            }
+        });
 
         btnDel.setText("deletar");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("ID");
 
@@ -166,16 +241,6 @@ public class CadUsu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRead))
-                        .addGap(0, 22, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -189,20 +254,31 @@ public class CadUsu extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNomeUsu))
+                                .addComponent(txtNomeUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnCreate)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnUpd)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnDel)
-                                        .addGap(0, 12, Short.MAX_VALUE))
-                                    .addComponent(txtPass))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(txtPass)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRead)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpd)))
+                        .addGap(0, 22, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(btnCreate)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +290,10 @@ public class CadUsu extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRead)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRead)
+                            .addComponent(btnDel)
+                            .addComponent(btnUpd))
                         .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -235,12 +314,9 @@ public class CadUsu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(btnUpd)
-                    .addComponent(btnDel))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
@@ -254,6 +330,14 @@ public class CadUsu extends javax.swing.JFrame {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         criar();
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        deletar();
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
+        atualizar();
+    }//GEN-LAST:event_btnUpdActionPerformed
 
     /**
      * @param args the command line arguments
