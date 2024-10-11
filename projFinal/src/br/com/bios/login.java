@@ -6,6 +6,8 @@
 package br.com.bios;
 
 import br.com.DAO.ConexaoDAO;
+import br.com.DAO.UsuarioDAO;
+import br.com.DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,10 +18,10 @@ import javax.swing.JOptionPane;
  * @author Leon
  */
 public class login extends javax.swing.JFrame {
-    
-    Connection conexao= null;
-    PreparedStatement pst= null;
-    ResultSet rs= null;
+
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
 
     /**
      * Creates new form login
@@ -28,27 +30,7 @@ public class login extends javax.swing.JFrame {
         initComponents();
         conexao = ConexaoDAO.connector();
         System.out.println(conexao);
-        
-    }
-    
-    public void logar(){
-        String sql= "select * from tb_usuarios where nome_usuario = ? and senha = ?";
-        try{
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtNusu.getText());
-            pst.setString(2, txtSen.getText());
-            
-            rs= pst.executeQuery();
-            
-            if(rs.next()){
-                TelaPrincipal principal = new TelaPrincipal();
-               principal.setVisible(true);
-            } else{
-                JOptionPane.showMessageDialog(null, "usuario e/ou senha invalidos");
-            }
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "tela login"+e);
-        }
+
     }
 
     /**
@@ -119,7 +101,24 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        logar();
+        if (txtNusu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "preencha o campo de nome");
+        } else if (txtSen.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "preencha o campo de nome");
+        } else {
+            String nomeUsu = txtNusu.getText();
+            String senhaUsu = txtSen.getText();
+
+            UsuarioDTO dto = new UsuarioDTO();
+
+            dto.setNome_usuario(nomeUsu);
+            dto.setSenha(senhaUsu);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.logar(dto);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_btnloginActionPerformed
 
     /**

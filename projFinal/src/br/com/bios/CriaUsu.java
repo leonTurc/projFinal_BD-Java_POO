@@ -6,6 +6,12 @@
 package br.com.bios;
 
 import br.com.DAO.ConexaoDAO;
+import br.com.DAO.UsuarioDAO;
+import br.com.DTO.UsuarioDTO;
+import static br.com.bios.CadUsu.txtMail;
+import static br.com.bios.CadUsu.txtNome;
+import static br.com.bios.CadUsu.txtNomeUsu;
+import static br.com.bios.CadUsu.txtPass;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -179,7 +185,33 @@ public class CriaUsu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        criar();
+         if(txtNome.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha a area de nome");
+            } else if(txtMail.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha a area de email");
+            } else if(txtNomeUsu.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
+            } else if(txtPass.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Preencha a area de senha");
+            } else {
+        
+                String nomeUsu= txtNome.getText();
+                String mailUsu= txtMail.getText();
+                String nome_usuarioUsu= txtNomeUsu.getText();
+                String pass= txtPass.getText();
+                
+                UsuarioDTO dto = new UsuarioDTO();
+                
+                dto.setNome(nomeUsu);
+                dto.setEmail(mailUsu);
+                dto.setNome_usuario(nome_usuarioUsu);
+                dto.setSenha(pass);
+                
+                
+                UsuarioDAO dao= new UsuarioDAO();
+                dao.criarAoLogar(dto);
+                this.dispose();
+            }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     /**

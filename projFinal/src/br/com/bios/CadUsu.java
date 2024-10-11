@@ -5,7 +5,8 @@
  */
 package br.com.bios;
 
-import br.com.DAO.ConexaoDAO;
+import br.com.DAO.*;
+import br.com.DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,140 +28,6 @@ public class CadUsu extends javax.swing.JFrame {
     public CadUsu() {
         initComponents();
         conexao = ConexaoDAO.connector();
-    }
-
-    public void criar() {
-        String sql = "insert into tb_usuarios (nome, email, nome_usuario, senha) values(?, ?, ?, ?)";
-        try {
-            pst = conexao.prepareStatement(sql);
-
-            if (txtNome.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de nome.");
-            } else if (txtMail.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de Email");
-            } else if (txtNomeUsu.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
-            } else if (txtPass.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de senha");
-            } else {
-                pst.setString(1, txtNome.getText());
-                pst.setString(2, txtMail.getText());
-                pst.setString(3, txtNomeUsu.getText());
-                pst.setString(4, txtPass.getText());
-            }
-
-            int add = pst.executeUpdate();
-
-            if (add > 0) {
-                JOptionPane.showMessageDialog(null, "Criado com sucesso");
-                txtNome.setText(null);
-                txtMail.setText(null);
-                txtNomeUsu.setText(null);
-                txtPass.setText(null);
-            }
-
-        } catch (Exception e) {
-            if (e.getMessage().contains("tb_usuarios.nome_usuario")) {
-                JOptionPane.showMessageDialog(null, "Nome de usuario ja em uso.");
-            } else if (e.getMessage().contains("tb_usuarios.email")) {
-                JOptionPane.showMessageDialog(null, "email ja em uso");
-            } else {
-                JOptionPane.showMessageDialog(null, "metodo criar " + e);
-            }
-
-        }
-    }
-    
-    public void deletar(){
-        int res= JOptionPane.showConfirmDialog(null, "Tem certeza que quer deletar este usuario?", "ATENÇÃO", JOptionPane.YES_NO_OPTION);
-        if(res == JOptionPane.YES_OPTION){
-            String sql= "delete from tb_usuarios where id = ? ";
-            try{
-                pst= conexao.prepareStatement(sql);
-                pst.setString(1, txtId.getText());
-                int result = pst.executeUpdate();
-                if(result > 0){
-                    JOptionPane.showMessageDialog(null, "Usuario deletado com sucesso");
-                    txtId.setText(null);
-                    txtNome.setText(null);
-                    txtMail.setText(null);
-                    txtNomeUsu.setText(null);
-                    txtPass.setText(null);
-                } else{
-                    JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
-                }
-            } catch(Exception e){
-                JOptionPane.showMessageDialog(null, "metodo deletar:"+e.getMessage());
-            }
-        }
-    }
-    
-    public void atualizar(){
-        int res= JOptionPane.showConfirmDialog(null, "Quer mesmo alterar este usuario?", "ATENÇÃO", JOptionPane.YES_NO_OPTION);
-        if(res == JOptionPane.YES_OPTION){
-            String sql= "update tb_usuarios set nome = ?, email= ?, nome_usuario= ?, senha= ? where id= ?";
-            
-            try{
-                pst= conexao.prepareStatement(sql);
-                pst.setString(1, txtNome.getText());
-                pst.setString(2, txtMail.getText());
-                pst.setString(3, txtNomeUsu.getText());
-                pst.setString(4, txtPass.getText());
-                pst.setString(5, txtId.getText());
-                
-                if (txtNome.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de nome.");
-            } else if (txtMail.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de Email");
-            } else if (txtNomeUsu.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
-            } else if (txtPass.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha a area de senha");
-            } else{
-                int result= pst.executeUpdate();
-                
-                if(result > 0){
-                    JOptionPane.showMessageDialog(null, "Alterado com sucesso");
-                    txtId.setText(null);
-                    txtNome.setText(null);
-                    txtMail.setText(null);
-                    txtNomeUsu.setText(null);
-                    txtPass.setText(null);
-                } else {
-                    JOptionPane.showMessageDialog(null, "erro ao alterar");
-                    }
-                }
-            } catch(Exception e){
-                JOptionPane.showMessageDialog(null, "metodo Atualizar "+e.getMessage());
-            }
-        }
-    }
-
-    public void pesquisar() {
-        String sql = "select * from tb_usuarios where id = ?";
-        try {
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtId.getText());
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                txtNome.setText(rs.getString(2));
-                txtMail.setText(rs.getString(3));
-                txtNomeUsu.setText(rs.getString(4));
-                txtPass.setText(rs.getString(5));
-            } else {
-                txtNome.setText(null);
-                txtMail.setText(null);
-                txtNomeUsu.setText(null);
-                txtPass.setText(null);
-                JOptionPane.showMessageDialog(null, "Usuario não cadastrado.");
-
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "metodo pesquisar" + e);
-        }
-
     }
 
     /**
@@ -324,19 +191,93 @@ public class CadUsu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        pesquisar();
+        if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o ID a ser pesquisado");
+        } else {
+
+            UsuarioDTO dto = new UsuarioDTO();
+
+            int idUsu = Integer.parseInt(txtId.getText());
+            dto.setId(idUsu);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.pesquisar(dto);
+
+        }
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        criar();
-    }//GEN-LAST:event_btnCreateActionPerformed
 
+        if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de nome");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de email");
+        } else if (txtNomeUsu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
+        } else if (txtPass.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de senha");
+        } else {
+
+            String nomeUsu = txtNome.getText();
+            String mailUsu = txtMail.getText();
+            String nome_usuarioUsu = txtNomeUsu.getText();
+            String pass = txtPass.getText();
+
+            UsuarioDTO dto = new UsuarioDTO();
+
+            dto.setNome(nomeUsu);
+            dto.setEmail(mailUsu);
+            dto.setNome_usuario(nome_usuarioUsu);
+            dto.setSenha(pass);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.criar(dto);
+
+    }//GEN-LAST:event_btnCreateActionPerformed
+    }
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
-        deletar();
+
+        UsuarioDTO dto = new UsuarioDTO();
+
+        int idUsu = Integer.parseInt(txtId.getText());
+
+        dto.setId(idUsu);
+
+        UsuarioDAO dao = new UsuarioDAO();
+        dao.deletar(dto);
+
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
-        atualizar();
+
+        if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de nome.");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de Email");
+        } else if (txtNomeUsu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
+        } else if (txtPass.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de senha");
+        } else {
+
+            int idUsu = Integer.parseInt(txtId.getText());
+            String nomeUsu = txtNome.getText();
+            String mailUsu = txtMail.getText();
+            String nome_usuarioUsu = txtNomeUsu.getText();
+            String pass = txtPass.getText();
+
+            UsuarioDTO dto = new UsuarioDTO();
+
+            dto.setId(idUsu);
+            dto.setNome(nomeUsu);
+            dto.setEmail(mailUsu);
+            dto.setNome_usuario(nome_usuarioUsu);
+            dto.setSenha(pass);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.atualizar(dto);
+
+        }
     }//GEN-LAST:event_btnUpdActionPerformed
 
     /**
@@ -385,10 +326,10 @@ public class CadUsu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtMail;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNomeUsu;
-    private javax.swing.JTextField txtPass;
+    public static javax.swing.JTextField txtId;
+    public static javax.swing.JTextField txtMail;
+    public static javax.swing.JTextField txtNome;
+    public static javax.swing.JTextField txtNomeUsu;
+    public static javax.swing.JTextField txtPass;
     // End of variables declaration//GEN-END:variables
 }
