@@ -5,6 +5,10 @@
  */
 package br.com.bios;
 
+import br.com.DAO.ClienteDAO;
+import br.com.DTO.ClienteDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leon
@@ -27,23 +31,294 @@ public class CadCli extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtTelefone = new javax.swing.JTextField();
+        btnCreate = new javax.swing.JButton();
+        btnRead = new javax.swing.JButton();
+        btnUpd = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtMail = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtCpfCnpj = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        btnCreate.setText("Criar");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
+        btnRead.setText("pesquisar");
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
+            }
+        });
+
+        btnUpd.setText("atualizar");
+        btnUpd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdActionPerformed(evt);
+            }
+        });
+
+        btnDel.setText("deletar");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("ID");
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 27)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Tela de clientes");
+
+        jLabel2.setText("Nome");
+
+        jLabel3.setText("e-mail");
+
+        jLabel4.setText("endereço");
+
+        jLabel5.setText("telefone");
+
+        jLabel7.setText("cpf/cnpj");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTelefone)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRead)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpd)))
+                .addGap(0, 181, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(btnCreate)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRead)
+                            .addComponent(btnDel)
+                            .addComponent(btnUpd))
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        ClienteDTO dto = new ClienteDTO();
+        ClienteDAO dao = new ClienteDAO();
+
+        String nomeCli = txtNome.getText();
+        String enderecoCli = txtEndereco.getText();
+        String telefoneCli = txtTelefone.getText();
+        String emailCli = txtMail.getText();
+        String cpf_cnpjCli = txtCpfCnpj.getText();
+
+        dto.setNome(nomeCli);
+        dto.setEndereco(enderecoCli);
+        dto.setTelefone(telefoneCli);
+        dto.setEmail(emailCli);
+        dto.setCpf_cnpj(cpf_cnpjCli);
+
+        if (txtCpfCnpj.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de cpf/cnpj");
+        } else if (txtEndereco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de endereço");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de email");
+        } else if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
+        } else if (txtTelefone.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de telefone");
+        } else {
+
+            dao.criar(dto);
+
+        }
+
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+        ClienteDTO dto = new ClienteDTO();
+        ClienteDAO dao = new ClienteDAO();
+
+        int idCli = Integer.parseInt(txtId.getText());
+        String nomeCli = txtNome.getText();
+        String enderecoCli = txtEndereco.getText();
+        String telefoneCli = txtTelefone.getText();
+        String emailCli = txtMail.getText();
+        String cpf_cnpjCli = txtCpfCnpj.getText();
+
+        dto.setIdCli(idCli);
+        dto.setNome(nomeCli);
+        dto.setEndereco(enderecoCli);
+        dto.setTelefone(telefoneCli);
+        dto.setEmail(emailCli);
+        dto.setCpf_cnpj(cpf_cnpjCli);
+        
+        if(txtId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
+        } else{
+        dao.pesquisar(dto);
+        }
+    }//GEN-LAST:event_btnReadActionPerformed
+
+    private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
+        ClienteDTO dto = new ClienteDTO();
+        ClienteDAO dao = new ClienteDAO();
+
+        int idCli = Integer.parseInt(txtId.getText());
+        String nomeCli = txtNome.getText();
+        String enderecoCli = txtEndereco.getText();
+        String telefoneCli = txtTelefone.getText();
+        String emailCli = txtMail.getText();
+        String cpf_cnpjCli = txtCpfCnpj.getText();
+
+        dto.setIdCli(idCli);
+        dto.setNome(nomeCli);
+        dto.setEndereco(enderecoCli);
+        dto.setTelefone(telefoneCli);
+        dto.setEmail(emailCli);
+        dto.setCpf_cnpj(cpf_cnpjCli);
+        
+         if (txtCpfCnpj.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de cpf/cnpj");
+        } else if (txtEndereco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de endereço");
+        } else if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de email");
+        } else if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
+        } else if (txtTelefone.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de telefone");
+        } else {
+
+        dao.atualizar(dto);
+
+        }
+    }//GEN-LAST:event_btnUpdActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        ClienteDTO dto = new ClienteDTO();
+        ClienteDAO dao = new ClienteDAO();
+
+        int idCli = Integer.parseInt(txtId.getText());
+        String nomeCli = txtNome.getText();
+        String enderecoCli = txtEndereco.getText();
+        String telefoneCli = txtTelefone.getText();
+        String emailCli = txtMail.getText();
+        String cpf_cnpjCli = txtCpfCnpj.getText();
+
+        dto.setIdCli(idCli);
+        dto.setNome(nomeCli);
+        dto.setEndereco(enderecoCli);
+        dto.setTelefone(telefoneCli);
+        dto.setEmail(emailCli);
+        dto.setCpf_cnpj(cpf_cnpjCli);
+        
+        if(txtId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
+        } else{
+        dao.deletar(dto);
+        }
+    }//GEN-LAST:event_btnDelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +356,22 @@ public class CadCli extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnRead;
+    private javax.swing.JButton btnUpd;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    public static javax.swing.JTextField txtCpfCnpj;
+    public static javax.swing.JTextField txtEndereco;
+    public static javax.swing.JTextField txtId;
+    public static javax.swing.JTextField txtMail;
+    public static javax.swing.JTextField txtNome;
+    public static javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

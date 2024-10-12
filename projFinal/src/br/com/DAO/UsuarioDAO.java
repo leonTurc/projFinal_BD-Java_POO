@@ -21,7 +21,7 @@ public class UsuarioDAO {
         CadUsu.txtPass.setText(null);
     }
     
-    public void logar(UsuarioDTO dto){
+    public int logar(UsuarioDTO dto){
         String sql= "select * from tb_usuarios where nome_usuario = ? and senha = ?";
         conexao = ConexaoDAO.connector();
         try{
@@ -34,11 +34,14 @@ public class UsuarioDAO {
             if(rs.next()){
                 TelaPrincipal principal = new TelaPrincipal();
                principal.setVisible(true);
+               return 1;
             } else{
                 JOptionPane.showMessageDialog(null, "usuario e/ou senha invalidos");
+                return 0;
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "tela login"+e);
+            return 0;
         }
     }
 
@@ -76,7 +79,7 @@ public class UsuarioDAO {
 
     }
 
-    public void criarAoLogar(UsuarioDTO dto) {
+    public int criarAoLogar(UsuarioDTO dto) {
         String sql = "insert into tb_usuarios(nome, email, nome_usuario, senha) values(?, ?, ?, ?)";
         conexao = ConexaoDAO.connector();
 
@@ -94,18 +97,22 @@ public class UsuarioDAO {
                 JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
                 TelaPrincipal pri = new TelaPrincipal();
                 pri.setVisible(true);
+                return 1;
+            } else {
+                return 0;
             }
 
-            pst.close();
 
         } catch (Exception e) {
             if (e.getMessage().contains("tb_usuarios.nome_usuario")) {
                 JOptionPane.showMessageDialog(null, "nome de usuario ja em uso");
+                return 0;
             } else if (e.getMessage().contains("tb_usuarios.email")) {
                 JOptionPane.showMessageDialog(null, "Email ja em uso");
+                return 0;
             } else {
                 JOptionPane.showMessageDialog(null, "metodo criar " + e);
-
+                return 0;
             }
         }
 

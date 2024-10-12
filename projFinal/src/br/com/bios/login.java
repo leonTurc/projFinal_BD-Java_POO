@@ -115,8 +115,10 @@ public class login extends javax.swing.JFrame {
             dto.setSenha(senhaUsu);
 
             UsuarioDAO dao = new UsuarioDAO();
-            dao.logar(dto);
-            this.dispose();
+            int go = dao.logar(dto);
+            if (go > 0){
+                this.dispose();
+            }
         }
 
     }//GEN-LAST:event_btnloginActionPerformed

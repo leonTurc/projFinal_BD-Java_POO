@@ -209,8 +209,11 @@ public class CriaUsu extends javax.swing.JFrame {
                 
                 
                 UsuarioDAO dao= new UsuarioDAO();
-                dao.criarAoLogar(dto);
-                this.dispose();
+                int go = dao.criarAoLogar(dto);
+                if (go>0){
+                    this.dispose();
+                }
+                
             }
     }//GEN-LAST:event_btnCreateActionPerformed
 
