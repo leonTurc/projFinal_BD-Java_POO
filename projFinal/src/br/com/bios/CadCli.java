@@ -48,32 +48,36 @@ public class CadCli extends javax.swing.JFrame {
         txtEndereco = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtCpfCnpj = new javax.swing.JTextField();
+        btnOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        btnCreate.setText("Criar");
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
 
-        btnRead.setText("pesquisar");
+        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
+        btnRead.setPreferredSize(new java.awt.Dimension(51, 51));
         btnRead.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReadActionPerformed(evt);
             }
         });
 
-        btnUpd.setText("atualizar");
+        btnUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        btnUpd.setPreferredSize(new java.awt.Dimension(51, 51));
         btnUpd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdActionPerformed(evt);
             }
         });
 
-        btnDel.setText("deletar");
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
+        btnDel.setPreferredSize(new java.awt.Dimension(51, 51));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDelActionPerformed(evt);
@@ -97,18 +101,21 @@ public class CadCli extends javax.swing.JFrame {
 
         jLabel7.setText("cpf/cnpj");
 
+        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
+        btnOut.setPreferredSize(new java.awt.Dimension(36, 36));
+        btnOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -129,70 +136,79 @@ public class CadCli extends javax.swing.JFrame {
                                     .addGap(6, 6, 6)
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRead)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpd)))
-                .addGap(0, 181, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(btnCreate)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtId))))
+                .addGap(0, 67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(15, 15, 15)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRead)
-                            .addComponent(btnDel)
-                            .addComponent(btnUpd))
-                        .addGap(8, 8, 8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,125 +216,140 @@ public class CadCli extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        ClienteDTO dto = new ClienteDTO();
-        ClienteDAO dao = new ClienteDAO();
-
-        String nomeCli = txtNome.getText();
-        String enderecoCli = txtEndereco.getText();
-        String telefoneCli = txtTelefone.getText();
-        String emailCli = txtMail.getText();
-        String cpf_cnpjCli = txtCpfCnpj.getText();
-
-        dto.setNome(nomeCli);
-        dto.setEndereco(enderecoCli);
-        dto.setTelefone(telefoneCli);
-        dto.setEmail(emailCli);
-        dto.setCpf_cnpj(cpf_cnpjCli);
-
-        if (txtCpfCnpj.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de cpf/cnpj");
+       if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
         } else if (txtEndereco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de endereço");
-        } else if (txtMail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de email");
-        } else if (txtNome.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
         } else if (txtTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de telefone");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de email");
+        } else if (txtCpfCnpj.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de cpf/cnpj");
+        } else if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
         } else {
 
-            dao.criar(dto);
+            ClienteDTO dto = new ClienteDTO();
+            ClienteDAO dao = new ClienteDAO();
 
+            int idCli = Integer.parseInt(txtId.getText());
+            String nomeCli = txtNome.getText();
+            String enderecoCli = txtEndereco.getText();
+            String telefoneCli = txtTelefone.getText();
+            String emailCli = txtMail.getText();
+            String cpf_cnpjCli = txtCpfCnpj.getText();
+
+            dto.setIdCli(idCli);
+            dto.setNome(nomeCli);
+            dto.setEndereco(enderecoCli);
+            dto.setTelefone(telefoneCli);
+            dto.setEmail(emailCli);
+            dto.setCpf_cnpj(cpf_cnpjCli);
+
+            dao.criar(dto);
         }
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        ClienteDTO dto = new ClienteDTO();
-        ClienteDAO dao = new ClienteDAO();
-
-        int idCli = Integer.parseInt(txtId.getText());
-        String nomeCli = txtNome.getText();
-        String enderecoCli = txtEndereco.getText();
-        String telefoneCli = txtTelefone.getText();
-        String emailCli = txtMail.getText();
-        String cpf_cnpjCli = txtCpfCnpj.getText();
-
-        dto.setIdCli(idCli);
-        dto.setNome(nomeCli);
-        dto.setEndereco(enderecoCli);
-        dto.setTelefone(telefoneCli);
-        dto.setEmail(emailCli);
-        dto.setCpf_cnpj(cpf_cnpjCli);
-        
-        if(txtId.getText().isEmpty()){
+        if (txtId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
-        } else{
-        dao.pesquisar(dto);
+        } else {
+
+            ClienteDTO dto = new ClienteDTO();
+            ClienteDAO dao = new ClienteDAO();
+
+            int idCli = Integer.parseInt(txtId.getText());
+            String nomeCli = txtNome.getText();
+            String enderecoCli = txtEndereco.getText();
+            String telefoneCli = txtTelefone.getText();
+            String emailCli = txtMail.getText();
+            String cpf_cnpjCli = txtCpfCnpj.getText();
+
+            dto.setIdCli(idCli);
+            dto.setNome(nomeCli);
+            dto.setEndereco(enderecoCli);
+            dto.setTelefone(telefoneCli);
+            dto.setEmail(emailCli);
+            dto.setCpf_cnpj(cpf_cnpjCli);
+
+            dao.pesquisar(dto);
         }
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
-        ClienteDTO dto = new ClienteDTO();
-        ClienteDAO dao = new ClienteDAO();
-
-        int idCli = Integer.parseInt(txtId.getText());
-        String nomeCli = txtNome.getText();
-        String enderecoCli = txtEndereco.getText();
-        String telefoneCli = txtTelefone.getText();
-        String emailCli = txtMail.getText();
-        String cpf_cnpjCli = txtCpfCnpj.getText();
-
-        dto.setIdCli(idCli);
-        dto.setNome(nomeCli);
-        dto.setEndereco(enderecoCli);
-        dto.setTelefone(telefoneCli);
-        dto.setEmail(emailCli);
-        dto.setCpf_cnpj(cpf_cnpjCli);
-        
-         if (txtCpfCnpj.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de cpf/cnpj");
+        if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
         } else if (txtEndereco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de endereço");
-        } else if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
-        } else if (txtMail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de email");
-        } else if (txtNome.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
         } else if (txtTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de telefone");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de email");
+        } else if (txtCpfCnpj.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de cpf/cnpj");
+        } else if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
         } else {
 
-        dao.atualizar(dto);
+            ClienteDTO dto = new ClienteDTO();
+            ClienteDAO dao = new ClienteDAO();
+
+            int idCli = Integer.parseInt(txtId.getText());
+            String nomeCli = txtNome.getText();
+            String enderecoCli = txtEndereco.getText();
+            String telefoneCli = txtTelefone.getText();
+            String emailCli = txtMail.getText();
+            String cpf_cnpjCli = txtCpfCnpj.getText();
+
+            dto.setIdCli(idCli);
+            dto.setNome(nomeCli);
+            dto.setEndereco(enderecoCli);
+            dto.setTelefone(telefoneCli);
+            dto.setEmail(emailCli);
+            dto.setCpf_cnpj(cpf_cnpjCli);
+
+            dao.atualizar(dto);
 
         }
     }//GEN-LAST:event_btnUpdActionPerformed
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
-        ClienteDTO dto = new ClienteDTO();
-        ClienteDAO dao = new ClienteDAO();
-
-        int idCli = Integer.parseInt(txtId.getText());
-        String nomeCli = txtNome.getText();
-        String enderecoCli = txtEndereco.getText();
-        String telefoneCli = txtTelefone.getText();
-        String emailCli = txtMail.getText();
-        String cpf_cnpjCli = txtCpfCnpj.getText();
-
-        dto.setIdCli(idCli);
-        dto.setNome(nomeCli);
-        dto.setEndereco(enderecoCli);
-        dto.setTelefone(telefoneCli);
-        dto.setEmail(emailCli);
-        dto.setCpf_cnpj(cpf_cnpjCli);
-        
-        if(txtId.getText().isEmpty()){
+        if (txtId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
-        } else{
-        dao.deletar(dto);
+        } else {
+
+            ClienteDTO dto = new ClienteDTO();
+            ClienteDAO dao = new ClienteDAO();
+
+            int idCli = Integer.parseInt(txtId.getText());
+            String nomeCli = txtNome.getText();
+            String enderecoCli = txtEndereco.getText();
+            String telefoneCli = txtTelefone.getText();
+            String emailCli = txtMail.getText();
+            String cpf_cnpjCli = txtCpfCnpj.getText();
+
+            dto.setIdCli(idCli);
+            dto.setNome(nomeCli);
+            dto.setEndereco(enderecoCli);
+            dto.setTelefone(telefoneCli);
+            dto.setEmail(emailCli);
+            dto.setCpf_cnpj(cpf_cnpjCli);
+
+            dao.deletar(dto);
         }
     }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
+        int res = JOptionPane.showConfirmDialog(null, "tem certeza que deseja retornar a tela principal?", null, JOptionPane.YES_NO_OPTION);
+        
+        if(res==JOptionPane.YES_OPTION){
+        TelaPrincipal pri = new TelaPrincipal();
+        pri.setVisible(true);
+        this.dispose();
+        }
+    }//GEN-LAST:event_btnOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,6 +389,7 @@ public class CadCli extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnOut;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpd;
     private javax.swing.JLabel jLabel1;

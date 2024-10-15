@@ -22,17 +22,18 @@ public class ClienteDAO {
     }
 
     public void criar(ClienteDTO dto) {
-        String sql = "insert into tb_clientes(nome, endereco, telefone, email, cpf_cnpj) values(?, ?, ?, ?, ?)";
+        String sql = "insert into tb_clientes(id, nome, endereco, telefone, email, cpf_cnpj) values(?, ?, ?, ?, ?, ?)";
         conexao = ConexaoDAO.connector();
 
         try {
             pst = conexao.prepareStatement(sql);
 
-            pst.setString(1, dto.getNome());
-            pst.setString(2, dto.getEndereco());
-            pst.setString(3, dto.getTelefone());
-            pst.setString(4, dto.getEmail());
-            pst.setString(5, dto.getCpf_cnpj());
+            pst.setInt(1, dto.getIdCli());
+            pst.setString(2, dto.getNome());
+            pst.setString(3, dto.getEndereco());
+            pst.setString(4, dto.getTelefone());
+            pst.setString(5, dto.getEmail());
+            pst.setString(6, dto.getCpf_cnpj());
 
             int add = pst.executeUpdate();
 
@@ -44,9 +45,11 @@ public class ClienteDAO {
             pst.close();
 
         } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, "metodo criar " + e);
-
+            if (e.getMessage().contains("for key 'tb_clientes.PRIMARY'")) {
+                JOptionPane.showMessageDialog(null, "ID de ciente ja em uso");
+            } else {
+                JOptionPane.showMessageDialog(null, "metodo criar " + e);
+            }
         }
     }
 
