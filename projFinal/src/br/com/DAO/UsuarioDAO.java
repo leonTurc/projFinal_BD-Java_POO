@@ -13,49 +13,50 @@ public class UsuarioDAO {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
-    public void limpar(){
+
+    public void limpar() {
         CadUsu.txtMail.setText(null);
         CadUsu.txtNome.setText(null);
         CadUsu.txtNomeUsu.setText(null);
         CadUsu.txtPass.setText(null);
     }
-    
-    public int logar(UsuarioDTO dto){
-        String sql= "select * from tb_usuarios where nome_usuario = ? and senha = ?";
+
+    public int logar(UsuarioDTO dto) {
+        String sql = "select * from tb_usuarios where nome_usuario = ? and senha = ?";
         conexao = ConexaoDAO.connector();
-        try{
+        try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, dto.getNome_usuario());
             pst.setString(2, dto.getSenha());
-            
-            rs= pst.executeQuery();
-            
-            if(rs.next()){
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
                 TelaPrincipal principal = new TelaPrincipal();
-               principal.setVisible(true);
-               return 1;
-            } else{
+                principal.setVisible(true);
+                return 1;
+            } else {
                 JOptionPane.showMessageDialog(null, "usuario e/ou senha invalidos");
                 return 0;
             }
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "tela login"+e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "tela login" + e);
             return 0;
         }
     }
 
     public void criar(UsuarioDTO dto) {
-        String sql = "insert into tb_usuarios(nome, email, nome_usuario, senha) values(?, ?, ?, ?)";
+        String sql = "insert into tb_usuarios(id, nome, email, nome_usuario, senha) values(?, ?, ?, ?, ?)";
         conexao = ConexaoDAO.connector();
 
         try {
             pst = conexao.prepareStatement(sql);
 
-            pst.setString(1, dto.getNome());
-            pst.setString(2, dto.getEmail());
-            pst.setString(3, dto.getNome_usuario());
-            pst.setString(4, dto.getSenha());
+            pst.setInt(1, dto.getId());
+            pst.setString(2, dto.getNome());
+            pst.setString(3, dto.getEmail());
+            pst.setString(4, dto.getNome_usuario());
+            pst.setString(5, dto.getSenha());
 
             int add = pst.executeUpdate();
 
@@ -67,9 +68,11 @@ public class UsuarioDAO {
             pst.close();
 
         } catch (Exception e) {
-            if (e.getMessage().contains("tb_usuarios.nome_usuario")) {
+            if (e.getMessage().contains("for key 'tb_usuarios.PRIMARY'")) {
+                JOptionPane.showMessageDialog(null, "ID ja em uso");
+            } else if (e.getMessage().contains("for key 'tb_usuarios.nome_usuario_UNIQUE'")) {
                 JOptionPane.showMessageDialog(null, "nome de usuario ja em uso");
-            } else if (e.getMessage().contains("tb_usuarios.email")) {
+            } else if (e.getMessage().contains("for key 'tb_usuarios.email_UNIQUE'")) {
                 JOptionPane.showMessageDialog(null, "Email ja em uso");
             } else {
                 JOptionPane.showMessageDialog(null, "metodo criar " + e);
@@ -80,16 +83,17 @@ public class UsuarioDAO {
     }
 
     public int criarAoLogar(UsuarioDTO dto) {
-        String sql = "insert into tb_usuarios(nome, email, nome_usuario, senha) values(?, ?, ?, ?)";
+        String sql = "insert into tb_usuarios(id, nome, email, nome_usuario, senha) values(?, ?, ?, ?, ?)";
         conexao = ConexaoDAO.connector();
 
         try {
             pst = conexao.prepareStatement(sql);
 
-            pst.setString(1, dto.getNome());
-            pst.setString(2, dto.getEmail());
-            pst.setString(3, dto.getNome_usuario());
-            pst.setString(4, dto.getSenha());
+            pst.setInt(1, dto.getId());
+            pst.setString(2, dto.getNome());
+            pst.setString(3, dto.getEmail());
+            pst.setString(4, dto.getNome_usuario());
+            pst.setString(5, dto.getSenha());
 
             int add = pst.executeUpdate();
 
@@ -102,12 +106,14 @@ public class UsuarioDAO {
                 return 0;
             }
 
-
         } catch (Exception e) {
-            if (e.getMessage().contains("tb_usuarios.nome_usuario")) {
+            if (e.getMessage().contains("for key 'tb_usuarios.PRIMARY'")) {
+                JOptionPane.showMessageDialog(null, "ID ja em uso");
+                return 0;
+            } else if (e.getMessage().contains("for key 'tb_usuarios.nome_usuario_UNIQUE'")) {
                 JOptionPane.showMessageDialog(null, "nome de usuario ja em uso");
                 return 0;
-            } else if (e.getMessage().contains("tb_usuarios.email")) {
+            } else if (e.getMessage().contains("for key 'tb_usuarios.email_UNIQUE'")) {
                 JOptionPane.showMessageDialog(null, "Email ja em uso");
                 return 0;
             } else {
