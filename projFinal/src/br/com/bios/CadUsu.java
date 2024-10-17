@@ -5,29 +5,21 @@
  */
 package br.com.bios;
 
-import br.com.DAO.*;
+import br.com.DAO.UsuarioDAO;
 import br.com.DTO.UsuarioDTO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Leon
  */
-public class CadUsu extends javax.swing.JFrame {
+public class CadUsu extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadUsu
      */
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-
     public CadUsu() {
         initComponents();
-        conexao = ConexaoDAO.connector();
     }
 
     /**
@@ -40,7 +32,11 @@ public class CadUsu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnUpd = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnDel = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -48,43 +44,13 @@ public class CadUsu extends javax.swing.JFrame {
         txtMail = new javax.swing.JTextField();
         txtNomeUsu = new javax.swing.JTextField();
         txtPass = new javax.swing.JTextField();
-        btnCreate = new javax.swing.JButton();
+        btnCreate5 = new javax.swing.JButton();
         btnRead = new javax.swing.JButton();
-        btnUpd = new javax.swing.JButton();
-        btnDel = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
-        btnOut = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 27)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Tela de usuarios");
-
-        jLabel2.setText("Nome");
-
-        jLabel3.setText("e-mail");
-
-        jLabel4.setText("nome de usuario");
-
-        jLabel5.setText("senha");
-
-        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
-
-        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
-        btnRead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReadActionPerformed(evt);
-            }
-        });
 
         btnUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         btnUpd.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +58,8 @@ public class CadUsu extends javax.swing.JFrame {
                 btnUpdActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Nome");
 
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
         btnDel.addActionListener(new java.awt.event.ActionListener() {
@@ -102,11 +70,23 @@ public class CadUsu extends javax.swing.JFrame {
 
         jLabel6.setText("ID");
 
-        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
-        btnOut.setPreferredSize(new java.awt.Dimension(36, 36));
-        btnOut.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("e-mail");
+
+        jLabel4.setText("nome de usuario");
+
+        jLabel5.setText("senha");
+
+        btnCreate5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
+        btnCreate5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOutActionPerformed(evt);
+                btnCreate5ActionPerformed(evt);
+            }
+        });
+
+        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
             }
         });
 
@@ -139,20 +119,18 @@ public class CadUsu extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCreate5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPass)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(35, 35, 35)
-                            .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,76 +167,12 @@ public class CadUsu extends javax.swing.JFrame {
                                 .addComponent(btnRead))
                             .addComponent(btnUpd, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate)))
+                .addComponent(btnCreate5)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o ID a ser pesquisado");
-        } else {
-
-            UsuarioDTO dto = new UsuarioDTO();
-
-            int idUsu = Integer.parseInt(txtId.getText());
-            dto.setId(idUsu);
-
-            UsuarioDAO dao = new UsuarioDAO();
-            dao.pesquisar(dto);
-
-        }
-    }//GEN-LAST:event_btnReadActionPerformed
-
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-
-        if (txtNome.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha a area de nome");
-        } else if (txtMail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha a area de email");
-        } else if (txtNomeUsu.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
-        } else if (txtPass.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha a area de senha");
-        } else if(txtId.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Preencha a area de ID");
-        } else {
-
-            int IdUsu = Integer.parseInt(txtId.getText());
-            String nomeUsu = txtNome.getText();
-            String mailUsu = txtMail.getText();
-            String nome_usuarioUsu = txtNomeUsu.getText();
-            String pass = txtPass.getText();
-
-            UsuarioDTO dto = new UsuarioDTO();
-
-            dto.setId(IdUsu);
-            dto.setNome(nomeUsu);
-            dto.setEmail(mailUsu);
-            dto.setNome_usuario(nome_usuarioUsu);
-            dto.setSenha(pass);
-
-            UsuarioDAO dao = new UsuarioDAO();
-            dao.criar(dto);
-
-    }//GEN-LAST:event_btnCreateActionPerformed
-    }
-    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
-
-        UsuarioDTO dto = new UsuarioDTO();
-
-        int idUsu = Integer.parseInt(txtId.getText());
-
-        dto.setId(idUsu);
-
-        UsuarioDAO dao = new UsuarioDAO();
-        dao.deletar(dto);
-
-    }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
 
@@ -292,55 +206,76 @@ public class CadUsu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdActionPerformed
 
-    private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "tem certeza que deseja retornar a tela principal?", null, JOptionPane.YES_NO_OPTION);
-        
-        if(res==JOptionPane.YES_OPTION){
-        TelaPrincipal pri = new TelaPrincipal();
-        pri.setVisible(true);
-        this.dispose();
-        }
-    }//GEN-LAST:event_btnOutActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        UsuarioDTO dto = new UsuarioDTO();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadUsu().setVisible(true);
-            }
-        });
-    }
+        int idUsu = Integer.parseInt(txtId.getText());
+
+        dto.setId(idUsu);
+
+        UsuarioDAO dao = new UsuarioDAO();
+        dao.deletar(dto);
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnCreate5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate5ActionPerformed
+
+        if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de nome");
+        } else if (txtMail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de email");
+        } else if (txtNomeUsu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
+        } else if (txtPass.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a area de senha");
+        } else if(txtId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha a area de ID");
+        } else {
+
+            int IdUsu = Integer.parseInt(txtId.getText());
+            String nomeUsu = txtNome.getText();
+            String mailUsu = txtMail.getText();
+            String nome_usuarioUsu = txtNomeUsu.getText();
+            String pass = txtPass.getText();
+
+            UsuarioDTO dto = new UsuarioDTO();
+
+            dto.setId(IdUsu);
+            dto.setNome(nomeUsu);
+            dto.setEmail(mailUsu);
+            dto.setNome_usuario(nome_usuarioUsu);
+            dto.setSenha(pass);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.criar(dto);
+        }
+    }//GEN-LAST:event_btnCreate5ActionPerformed
+
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+        if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o ID a ser pesquisado");
+        } else {
+
+            UsuarioDTO dto = new UsuarioDTO();
+
+            int idUsu = Integer.parseInt(txtId.getText());
+            dto.setId(idUsu);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.pesquisar(dto);
+
+        }
+    }//GEN-LAST:event_btnReadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnCreate1;
+    private javax.swing.JButton btnCreate2;
+    private javax.swing.JButton btnCreate3;
+    private javax.swing.JButton btnCreate4;
+    private javax.swing.JButton btnCreate5;
     private javax.swing.JButton btnDel;
-    private javax.swing.JButton btnOut;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpd;
     private javax.swing.JLabel jLabel1;

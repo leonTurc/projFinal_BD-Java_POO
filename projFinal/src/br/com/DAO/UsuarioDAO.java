@@ -127,6 +127,7 @@ public class UsuarioDAO {
     public void pesquisar(UsuarioDTO dto) {
         String sql = "select * from tb_usuarios where id = ?";
         conexao = ConexaoDAO.connector();
+        
         try {
             pst = conexao.prepareStatement(sql);
             pst.setInt(1, dto.getId());
@@ -140,10 +141,10 @@ public class UsuarioDAO {
             } else {
                 limpar();
                 JOptionPane.showMessageDialog(null, "Usuario não cadastrado.");
-
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "metodo pesquisar" + e);
         }
 

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author Leon
  */
-public class CadCli extends javax.swing.JFrame {
+public class CadCli extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadCli
@@ -31,32 +31,53 @@ public class CadCli extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtTelefone = new javax.swing.JTextField();
-        btnCreate = new javax.swing.JButton();
-        btnRead = new javax.swing.JButton();
-        btnUpd = new javax.swing.JButton();
+        txtEndereco = new javax.swing.JTextField();
         btnDel = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        txtCpfCnpj = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnCreate1 = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
+        btnRead = new javax.swing.JButton();
         txtMail = new javax.swing.JTextField();
-        txtEndereco = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtCpfCnpj = new javax.swing.JTextField();
-        btnOut = new javax.swing.JButton();
+        btnUpd = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
+        btnDel.setPreferredSize(new java.awt.Dimension(51, 51));
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("cpf/cnpj");
+
+        jLabel6.setText("ID");
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 27)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Tela de clientes");
+
+        jLabel2.setText("Nome");
+
+        jLabel3.setText("e-mail");
+
+        jLabel4.setText("endereço");
+
+        jLabel5.setText("telefone");
+
+        btnCreate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
+        btnCreate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreate1ActionPerformed(evt);
             }
         });
 
@@ -76,45 +97,12 @@ public class CadCli extends javax.swing.JFrame {
             }
         });
 
-        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
-        btnDel.setPreferredSize(new java.awt.Dimension(51, 51));
-        btnDel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("ID");
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 27)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tela de clientes");
-
-        jLabel2.setText("Nome");
-
-        jLabel3.setText("e-mail");
-
-        jLabel4.setText("endereço");
-
-        jLabel5.setText("telefone");
-
-        jLabel7.setText("cpf/cnpj");
-
-        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
-        btnOut.setPreferredSize(new java.awt.Dimension(36, 36));
-        btnOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOutActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -136,9 +124,7 @@ public class CadCli extends javax.swing.JFrame {
                                     .addGap(6, 6, 6)
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -160,9 +146,9 @@ public class CadCli extends javax.swing.JFrame {
                                 .addGap(45, 45, 45)
                                 .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtId))))
-                .addGap(0, 67, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,22 +187,19 @@ public class CadCli extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)))
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-       if (txtNome.getText().isEmpty()) {
+    private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
+        if (txtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de nome");
         } else if (txtEndereco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o campo de endereço");
@@ -249,8 +232,7 @@ public class CadCli extends javax.swing.JFrame {
 
             dao.criar(dto);
         }
-
-    }//GEN-LAST:event_btnCreateActionPerformed
+    }//GEN-LAST:event_btnCreate1ActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         if (txtId.getText().isEmpty()) {
@@ -277,6 +259,32 @@ public class CadCli extends javax.swing.JFrame {
             dao.pesquisar(dto);
         }
     }//GEN-LAST:event_btnReadActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
+        } else {
+
+            ClienteDTO dto = new ClienteDTO();
+            ClienteDAO dao = new ClienteDAO();
+
+            int idCli = Integer.parseInt(txtId.getText());
+            String nomeCli = txtNome.getText();
+            String enderecoCli = txtEndereco.getText();
+            String telefoneCli = txtTelefone.getText();
+            String emailCli = txtMail.getText();
+            String cpf_cnpjCli = txtCpfCnpj.getText();
+
+            dto.setIdCli(idCli);
+            dto.setNome(nomeCli);
+            dto.setEndereco(enderecoCli);
+            dto.setTelefone(telefoneCli);
+            dto.setEmail(emailCli);
+            dto.setCpf_cnpj(cpf_cnpjCli);
+
+            dao.deletar(dto);
+        }
+    }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
         if (txtNome.getText().isEmpty()) {
@@ -315,81 +323,11 @@ public class CadCli extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdActionPerformed
 
-    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo de ID");
-        } else {
-
-            ClienteDTO dto = new ClienteDTO();
-            ClienteDAO dao = new ClienteDAO();
-
-            int idCli = Integer.parseInt(txtId.getText());
-            String nomeCli = txtNome.getText();
-            String enderecoCli = txtEndereco.getText();
-            String telefoneCli = txtTelefone.getText();
-            String emailCli = txtMail.getText();
-            String cpf_cnpjCli = txtCpfCnpj.getText();
-
-            dto.setIdCli(idCli);
-            dto.setNome(nomeCli);
-            dto.setEndereco(enderecoCli);
-            dto.setTelefone(telefoneCli);
-            dto.setEmail(emailCli);
-            dto.setCpf_cnpj(cpf_cnpjCli);
-
-            dao.deletar(dto);
-        }
-    }//GEN-LAST:event_btnDelActionPerformed
-
-    private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "tem certeza que deseja retornar a tela principal?", null, JOptionPane.YES_NO_OPTION);
-        
-        if(res==JOptionPane.YES_OPTION){
-        TelaPrincipal pri = new TelaPrincipal();
-        pri.setVisible(true);
-        this.dispose();
-        }
-    }//GEN-LAST:event_btnOutActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadCli().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnCreate1;
     private javax.swing.JButton btnDel;
-    private javax.swing.JButton btnOut;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpd;
     private javax.swing.JLabel jLabel1;
