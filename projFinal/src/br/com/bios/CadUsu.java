@@ -47,6 +47,10 @@ public class CadUsu extends javax.swing.JInternalFrame {
         btnCreate5 = new javax.swing.JButton();
         btnRead = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Arial", 0, 27)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -130,7 +134,7 @@ public class CadUsu extends javax.swing.JInternalFrame {
                         .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 67, Short.MAX_VALUE))
+                .addGap(0, 83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +172,7 @@ public class CadUsu extends javax.swing.JInternalFrame {
                             .addComponent(btnUpd, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGap(18, 18, 18)
                 .addComponent(btnCreate5)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -269,11 +273,6 @@ public class CadUsu extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnCreate1;
-    private javax.swing.JButton btnCreate2;
-    private javax.swing.JButton btnCreate3;
-    private javax.swing.JButton btnCreate4;
     private javax.swing.JButton btnCreate5;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnRead;

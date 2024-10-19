@@ -49,6 +49,12 @@ public class CadCli extends javax.swing.JInternalFrame {
         txtMail = new javax.swing.JTextField();
         btnUpd = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 4, true));
+        setClosable(true);
+        setTitle("Clientes");
+        setToolTipText("");
+
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
         btnDel.setPreferredSize(new java.awt.Dimension(51, 51));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +154,7 @@ public class CadCli extends javax.swing.JInternalFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtId))))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,10 +198,10 @@ public class CadCli extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(0, 0, 792, 392);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
@@ -325,7 +331,6 @@ public class CadCli extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnCreate1;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnRead;

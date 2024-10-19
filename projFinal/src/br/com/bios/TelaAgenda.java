@@ -46,6 +46,7 @@ public class TelaAgenda extends javax.swing.JFrame {
         txtHora = new javax.swing.JTextField();
         txtIdCli = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        btnOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +109,13 @@ public class TelaAgenda extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
 
+        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
+        btnOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,9 +167,12 @@ public class TelaAgenda extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtHora)))
                                 .addGap(11, 11, 11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,10 +216,13 @@ public class TelaAgenda extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtIdCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton2))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(btnOut)
+                .addGap(26, 26, 26))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -222,6 +236,12 @@ public class TelaAgenda extends javax.swing.JFrame {
     private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdCliActionPerformed
+
+    private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
+        TelaPrincipal pri = new TelaPrincipal();
+        pri.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +279,7 @@ public class TelaAgenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOut;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
