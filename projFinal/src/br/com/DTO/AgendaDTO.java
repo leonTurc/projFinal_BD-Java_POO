@@ -1,16 +1,23 @@
 package br.com.DTO;
 
-import java.sql.Date;
-import java.sql.Time;
+
 
 public class AgendaDTO {
     ClienteDTO cliDto = new ClienteDTO();
     
     private int id;
-    private Date data;
-    private Time hora;
+    private String data;
+    private String hora;
     private String descricao;
-    private int idCli = cliDto.getIdCli();
+    private String nome_cli;
+
+    public String getNome_cli() {
+        return nome_cli;
+    }
+
+    public void setNome_cli(String nome_cli) {
+        this.nome_cli = nome_cli;
+    }
 
     public int getId() {
         return id;
@@ -20,19 +27,19 @@ public class AgendaDTO {
         this.id = id;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public Time getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
