@@ -126,7 +126,7 @@ public class ClienteDAO {
                     CadCli.txtId.setText(null);
                     limpar();
                 } else {
-                    JOptionPane.showMessageDialog(null, "erro ao alterar");
+                    JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
                 }
 
             } catch (Exception e) {
