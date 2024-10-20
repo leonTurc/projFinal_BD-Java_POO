@@ -40,6 +40,7 @@ public class ClienteDAO {
             if (add > 0) {
                 JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
                 limpar();
+                CadCli.txtId.setText(null);
             }
 
             pst.close();

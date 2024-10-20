@@ -80,7 +80,7 @@ public class TelaInicial extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setForeground(new java.awt.Color(153, 0, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sistema de cadastros horizon");
 
@@ -92,6 +92,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel4.setText("tenho uma conta e desejo entrar nela");
 
+        brnCria.setBackground(new java.awt.Color(153, 0, 255));
+        brnCria.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        brnCria.setForeground(new java.awt.Color(255, 255, 255));
         brnCria.setText("criar conta");
         brnCria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +102,9 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnLog.setBackground(new java.awt.Color(153, 0, 255));
+        btnLog.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        btnLog.setForeground(new java.awt.Color(255, 255, 255));
         btnLog.setText("fazer login");
         btnLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

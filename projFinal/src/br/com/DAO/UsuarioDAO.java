@@ -62,7 +62,8 @@ public class UsuarioDAO {
 
             if (add > 0) {
                 JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
-
+                limpar();
+                CadUsu.txtId.setText(null);
             }
 
             pst.close();
