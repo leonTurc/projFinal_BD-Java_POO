@@ -31,8 +31,11 @@ São as telas principais da aplicação, exibindo informações sobre agendament
 ## login.java: Contém a lógica de autenticação de usuários.
 
 # Interfaces graficas
+
 ## Tela inicial
-![Captura de tela 2024-10-21 201816](https://github.com/user-attachments/assets/b63f5852-6407-4637-8b66-f150caec10d9)
+
+![image](https://github.com/user-attachments/assets/9396b52f-b45e-46c6-b387-2efc10e146e8)
+
 
  A primeira tela do projeto, onde é possivel escolher Logar em uma conta existente, ou criar uma nova.
 
@@ -58,19 +61,22 @@ Tela acessada ao selecionar "criar conta" na tela inicial.
 
 ## Tela de cadastro de usuarios
 
-![Captura de tela 2024-10-21 203608](https://github.com/user-attachments/assets/a2924e3d-09d1-4192-8e4e-77ecbcce3238)
+![image](https://github.com/user-attachments/assets/c5227907-bc01-40b3-a1e5-afa1d823b04e)
+
 
 Permite manipular os usuarios cadastrados no banco de dados com um CRUD(criar, ler, atualizar e deletar).
 
 ## Tela de cadastro de clientes 
 
-![Captura de tela 2024-10-21 203843](https://github.com/user-attachments/assets/989c1b23-fe34-428c-b9ae-e5805c6d6896)
+![image](https://github.com/user-attachments/assets/df11abf1-20e9-4477-9425-1cf465a17647)
+
 
 Tambem permite manipular dados porem de clientes com o mesmo CRUD.
 
 ## Tela da agenda
 
-![Captura de tela 2024-10-21 204041](https://github.com/user-attachments/assets/ae66f50f-8777-434c-9bed-06a7b3d6518a)
+![image](https://github.com/user-attachments/assets/e147f3a9-878e-445e-92dd-232064923fcd)
+
 
 Permite manipular a agenda. criar, modificar, deletar e pesquisar eventos entre certas datas, horarios e clientes  especificos.
 
