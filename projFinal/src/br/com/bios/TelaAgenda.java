@@ -461,7 +461,7 @@ public class TelaAgenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable tbAgenda;
     public static javax.swing.JTextField txtAno;
-    private javax.swing.JTextField txtDesc;
+    public static javax.swing.JTextField txtDesc;
     public static javax.swing.JTextField txtDia;
     public static javax.swing.JTextField txtHora;
     public static javax.swing.JTextField txtId;

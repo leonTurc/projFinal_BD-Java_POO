@@ -43,7 +43,7 @@ public class ClienteDAO {
                 CadCli.txtId.setText(null);
             }
 
-            pst.close();
+            conexao.close();
 
         } catch (Exception e) {
             if (e.getMessage().contains("for key 'tb_clientes.PRIMARY'")) {
@@ -73,6 +73,7 @@ public class ClienteDAO {
                 JOptionPane.showMessageDialog(null, "Usuario não cadastrado.");
 
             }
+            conexao.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "metodo pesquisar" + e);
@@ -97,6 +98,9 @@ public class ClienteDAO {
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
                 }
+                
+                conexao.close();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "metodo deletar:" + e.getMessage());
             }
@@ -129,6 +133,8 @@ public class ClienteDAO {
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
                 }
+                
+                conexao.close();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "metodo criar " + e);

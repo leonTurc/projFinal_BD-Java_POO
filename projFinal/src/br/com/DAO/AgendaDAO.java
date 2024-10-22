@@ -20,6 +20,7 @@ public class AgendaDAO {
         TelaAgenda.txtMes.setText(null);
         TelaAgenda.txtMin.setText(null);
         TelaAgenda.txtNomeCli.setText(null);
+        TelaAgenda.txtDesc.setText(null);
     }
 
     public void AutoPesquisar() {
@@ -69,7 +70,7 @@ public class AgendaDAO {
                 JOptionPane.showMessageDialog(null, "erro ao adicionar evento");
                 limpar();
             }
-            pst.close();
+            conexao.close();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -77,8 +78,9 @@ public class AgendaDAO {
                 JOptionPane.showMessageDialog(null, "ID ja em uso");
             } else if (e.getMessage().contains("Data truncation: Incorrect date value:")){
                 JOptionPane.showMessageDialog(null, "Data invalida para registro");
-            }
-            else {
+            } else if(e.getMessage().contains("Data truncation: Incorrect time value:")){
+                JOptionPane.showMessageDialog(null, "Horario invalido para registro");
+            }else {
             JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
@@ -103,6 +105,7 @@ public class AgendaDAO {
                     JOptionPane.showMessageDialog(null, "Evento não registrado");
                     limpar();
                 }
+                conexao.close();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -132,6 +135,9 @@ public class AgendaDAO {
                     JOptionPane.showMessageDialog(null, "Erro ao alterar");
                     limpar();
                 }
+                
+                conexao.close();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro método atualizar " + e.getMessage());
                 limpar();

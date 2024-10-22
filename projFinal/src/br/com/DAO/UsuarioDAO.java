@@ -39,6 +39,7 @@ public class UsuarioDAO {
                 JOptionPane.showMessageDialog(null, "usuario e/ou senha invalidos");
                 return 0;
             }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "tela login" + e);
             return 0;
@@ -66,7 +67,7 @@ public class UsuarioDAO {
                 CadUsu.txtId.setText(null);
             }
 
-            pst.close();
+            conexao.close();
 
         } catch (Exception e) {
             if (e.getMessage().contains("for key 'tb_usuarios.PRIMARY'")) {
@@ -143,6 +144,8 @@ public class UsuarioDAO {
                 limpar();
                 JOptionPane.showMessageDialog(null, "Usuario não cadastrado.");
             }
+            
+            conexao.close();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -167,6 +170,9 @@ public class UsuarioDAO {
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
                 }
+                
+                conexao.close();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "metodo deletar:" + e.getMessage());
             }
@@ -196,6 +202,8 @@ public class UsuarioDAO {
                 } else {
                     JOptionPane.showMessageDialog(null, "erro ao alterar");
                 }
+                
+                conexao.close();
 
             } catch (Exception e) {
                 if (e.getMessage().contains("tb_usuarios.nome_usuario")) {
