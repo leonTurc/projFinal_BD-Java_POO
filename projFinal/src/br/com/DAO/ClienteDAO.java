@@ -91,11 +91,11 @@ public class ClienteDAO {
                 pst.setInt(1, dto.getIdCli());
                 int result = pst.executeUpdate();
                 if (result > 0) {
-                    JOptionPane.showMessageDialog(null, "Usuario deletado com sucesso");
+                    JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso");
                     CadCli.txtId.setText(null);
                     limpar();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
+                    JOptionPane.showMessageDialog(null, "Cliente não cadastrado");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "metodo deletar:" + e.getMessage());

@@ -3,7 +3,6 @@ package br.com.DTO;
 
 
 public class AgendaDTO {
-    ClienteDTO cliDto = new ClienteDTO();
     
     private int id;
     private String data;
